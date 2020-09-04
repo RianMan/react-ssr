@@ -6,19 +6,19 @@ import {  Route } from 'react-router-dom';
 import routes from '../routes';
 import Header from '../componets/Header'
 import { Provider } from 'react-redux';
-import store from '../store/index';
+import getStore from '../store/index';
 
 const context = {}
-
+const store = getStore();
 
 let getHtmlStr = (req,res) => {
 
     let hasFetchDataRoutes = routes.filter(r => r.fetchData);
 
-    let promiseArr = hasFetchDataRoutes.map(route =>  route.fetchData() )
+    let promiseArr = hasFetchDataRoutes.map(route =>  route.fetchData(store.dispatch) )
 
-    Promise.all(promiseArr).then(data => {
-        console.log(data,'data');
+    Promise.all(promiseArr).then(d => {
+        console.log(d,'d');
     })
 
     let HomeStr = renderToString(<Provider store={store}>

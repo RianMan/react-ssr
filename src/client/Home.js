@@ -6,15 +6,14 @@ import axiosFactory from '../request';
 @connect(state => (state.home), actions)
 class Home extends React.Component{
 
-    static fetchData = () => new Promise((resolve,reject) =>{
+    static fetchData = () => new Promise(async (resolve,reject) =>{
         let axios = axiosFactory(true);
-        axios.get('/users').then(res => {
-            if(res.data.code === 0) {
-                resolve(res.data.data)
-            }else{
-                reject('请求出错')
-            }
-        });
+        let res = await axios.get('/users');
+        if(res.data.code === 0) {
+            resolve(res.data.res.data)
+        }else{
+            reject('请求出错')
+        }
     })
 
     state = {
