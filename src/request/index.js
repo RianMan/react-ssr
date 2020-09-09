@@ -1,5 +1,5 @@
 import axios from 'axios';
-export default isServer => axios.create({
+export default () => axios.create({
     baseURL: 'http://localhost:9000/api',
 })
 

@@ -8,7 +8,7 @@ import Header from '../componets/Header'
 
 
 ReactDom.render(
-<Provider store={getStore()}>
+<Provider store={getStore('client')}>
     <BrowserRouter>
         <Header />
         {routes.map(route => <Route exact {...route} />)}

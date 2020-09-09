@@ -2,9 +2,9 @@ import * as types from './index';
 import axiosFactory from '../../request';
 
 export default {
-    getUserList(isServer){
+    getUserList(){
         return (dispatch) => {
-            let axios = axiosFactory(isServer);
+            let axios = axiosFactory();
             return axios.get('/users').then(res => {
                 if(res.data.code === 0) {
                     dispatch({
@@ -15,8 +15,6 @@ export default {
                     alert('请求出错')
                 }
             });
-            
         } 
-        
     },
 }
